@@ -1,0 +1,235 @@
+var utils = window.optimizely.get('utils');
+var $ = window.optimizely.get('jquery');
+
+// rob's changes
+utils.waitUntil(function() {
+  var jQuery = window.jQuery;
+  return jQuery;
+}).then(function() {
+  // Alejo replaced this:
+		// utils.waitForElement('#subjectSections').then(function (element) {
+   	//   window.jQuery('#subjectSections').append('<style>#cph_finder_C002 > div.leadsContactForm{display: block !important;}</style>');
+		// });
+  // By this:
+		utils.waitForElement('head').then(function (element) {
+			window.jQuery('head').append('<style>#cph_finder_C002 > div.leadsContactForm{display: block !important;}</style>');
+		});
+  // End Alejo's code
+});
+// end rob's changes 
+
+utils.waitForElement('body').then(function (element) {
+    $(element).append('<style>img{max-width: 100%;} #content.program_page, #footer{max-width: none; margin: 0 auto;} #nav-only-Header{background: url(//cdn.optimizely.com/img/3698610217/de1d3dab4a9f446395c84dee2f09253d.jpg) no-repeat center; background-size: cover; margin-top: 85px; width: 100% !important; max-width: none;    padding: 30px 0;}#nav-only-Header h1 { margin: 0; padding: 0; font-size: 44px; font-weight: bold; text-align: center; color: #fff; } .headerBG{border-bottom: 2px solid #13217c !important;} #content.program_page{margin: 0; padding: 0;} #content .breadcrumb{margin: 0 auto;} #content .breadcrumb li{padding-top: 4px;} .wrapper{width: auto !important; max-width: 1045px; padding: 0 15px;} .wrapper:after{content: ""; display: table; clear: both;} .program_page h2{font-family: "luellablack"; text-transform: uppercase; font-size: 42px; color: #000; margin-bottom: 12px;} .sfitemRichText p{font-size: 18px; line-height: 1.35; letter-spacing: normal; font-weight: 300;} .opt-sfitemRichText{text-align: center; padding: 17px;} .opt-sfitemRichText p{letter-spacing: normal; font-weight: 600; font-size: 18px; margin: 0 0 17px;}.opt-cta{color: #fff !important; background: #f26828; border-radius: 5px; padding: 9px 42px; display: inline-block; font-family: "sylvanhwscript1.0regular"; font-size: 31px; letter-spacing: 0.75px; text-decoration: none !important;} .opt-cta:after{content: ""; background: url(//cdn.optimizely.com/img/3698610217/dbee0fa9596f440ba30b096c5e4a6814.png) no-repeat center; width: 30px; height: 30px; display: inline-block;vertical-align: middle; margin-left: 10px;margin-bottom: 4px;} .sfitemDetails{padding-top: 22px;} .selectSubjectContainer{margin: 50px auto; overflow: hidden; max-width: none; padding: 50px 0; text-align: center;background: #5a2c7f;}#subjectSections.selectSubjectContainer{margin-top: 27px;margin-bottom: 58px; padding-top: 30px;  padding-bottom: 16px; text-align: center; background-image: none;} #subjectSections.selectSubjectContainer h3, #subjectSections.selectSubjectContainer h4{ color: #fff; font-size: 35px; font-family: "luellablack"; text-transform: uppercase; display: inline-block !important; width: auto; margin: 0 2px 5px; letter-spacing: normal; line-height: normal; padding: 0;} #subjectSections.selectSubjectContainer .select_line{display: none;} #subjectSections.selectSubjectContainer .subject.largeList a { color: #212e84; font-weight: 600; padding: 7px 12px; background: #fff; letter-spacing: normal; font-size: 17px; }#content .selectSubjectContainer .subjects .subject li{float: none; display: inline-block; width: auto; margin: 0 8px 23px;} #content .selectSubjectContainer .subjects .subject{text-align: center;} .tutoringSubject .wrapper{max-width: 1200px; padding: 60px 15px 30px;} .opt-media{width: 440px; width: 36.7%; max-width: 100%; float: left; text-align: center; padding-top: 4px; padding-bottom: 40px;} .subjectInfo{width: calc(100% - 490px); width: 59.2%; float: right;} .opt-btn, .subjectInfo .opt-img, .mob-cta{display: none;} .subjectInfo h2{} .subjectInfo .largeBody p{font-size: 20px; letter-spacing: normal; font-weight: 600; margin-bottom: 14px; color: #000;} #content .subjectInfo .largeBody ul { list-style: none; margin-bottom: 30px;} .subjectInfo .largeBody p a{font-size: 16px; font-weight: 600; color: #212e84; text-decoration: underline; margin-left: 26px; letter-spacing: normal; display: inline-block; margin-bottom: 42px;} .opt-media .opt-img{margin-bottom: 40px;} .tutoringSubject .opt-cta{ letter-spacing: 0.6px; padding: 8px 22px 10px 30px;} .subjectInfo ul li{letter-spacing: normal; font-size: 18px; color: #000000; margin-bottom: 8px; margin-left: 25px; position: relative; padding-left: 24px; font-weight: 300;} .subjectInfo ul li:before{content: ""; display: block; width: 19px; height: 19px; background: url(https://cdn.optimizely.com/img/3698610217/4db362137ad244d8857d2c28e7408c84.png) no-repeat center; background-size: contain; position: absolute; left: 0; top: 5px;} .tutoringSubject .backToTop{/*margin-top: 0; margin-bottom: 0; display: none;*/ height: auto; margin: 0; background: none;} /*#subjectSections + .tutoringSubject .backToTop{display: block; position: fixed; bottom: 2px; left: auto; right: 22px; width: auto; height: auto; margin: 0; background: none;}*/ .backToTop .buttonType{margin: /*-51px 0 */0; height: auto;} .backToTop .buttonType a{font-size: 27px; letter-spacing: 1px; border: 1px solid #212e84; padding: 10px 6px 8px;   color: #212e84 !important; height: auto;} .toTop{background: none; padding: 0; width: auto; height: auto;} .backToTop .buttonType a:before{content: ""; background: url(//cdn.optimizely.com/img/3698610217/e6b8d25bb5b2439aacda8c22f09c02be.svg) no-repeat center; background-size: contain; width: 24px; height: 24px; display: inline-block; margin-right: 10px; vertical-align: middle; margin-bottom: 6px;} .leadsContactForm{background: #7ac143; color: #fff;padding: 76px 0;} #dropForm{max-width: 430px; margin: 0 auto;} .leadsContactForm h2{font-size: 43px; color: #fff; font-family: "proxima-nova", sans-serif; text-align: center; text-transform: none; letter-spacing: normal; margin: 0 0 26px;} .leadsContactForm p{color: #fff; text-align: center; font-size: 20px; letter-spacing: normal; font-weight: normal; line-height: 1.45; margin: 0 0 38px;} .leadsContactForm p a{color: #fff; text-decoration: underline; font-weight: 600;} .leadsContactForm .sendButton{color: #611d87; background: #fff !important; border-radius: 30px;} .leadsContactForm .buttonType span:hover{opacity: 1;} .leadsContactForm .buttonType span .cta_arrow_white{width: 15px; height: 15px; background: url(//cdn.optimizely.com/img/3698610217/12df55d76e9e4657ad92a1ad6455bfca.svg) no-repeat center; width: 15px; height: 15px;} #backToTopFooter{display: none !important;} .opt-media .opt-img img{width: 100%;} @media (min-width: 768px){.tutoringSubject:nth-child(4n+2){background: #212e84;}    .tutoringSubject:nth-child(4n+2) .subjectInfo h2, .tutoringSubject:nth-child(4n+2) .subjectInfo .largeBody p, .tutoringSubject:nth-child(4n+2) .subjectInfo ul li, .tutoringSubject:nth-child(4n+2) .subjectInfo .largeBody p a{color: #fff;}   #content .tutoringSubject:nth-child(4n+2) .subjectInfo .largeBody ul li:before{background-image: url(//cdn.optimizely.com/img/3698610217/52db4ef3d42140acbbcd551dfd6e14ce.png);}    .tutoringSubject:nth-child(4n+2) .subjectInfo{float: left;}   .tutoringSubject:nth-child(4n+2) .opt-media{float: right;}    .tutoringSubject:nth-child(4n+2) .toTop{float: left;} .tutoringSubject:nth-child(4n+2) .backToTop .buttonType a{color: #fff !important; border-color: #fff;} .tutoringSubject:nth-child(4n+2) .backToTop .buttonType a:before{background-image: url(//cdn.optimizely.com/img/3698610217/b5179928c7d34504a92cb6b545d789ae.svg);}}  @media (max-width: 768px){#nav-only-Header{margin-top: 70px;}#header{border-bottom: 2px solid #13217c !important;}} @media (max-width: 767px){.opt-cta{padding-left: 36px; padding-right: 36px; }.subjectInfo ul li{margin-left: 0;} .subjectInfo .largeBody p a{margin-left: 0;} .tutoringSubject p{width: auto;} .subjectInfo .largeBody p:last-of-type:first-of-type{ margin: 14px 0;} #nav-only-Header{padding: 22px 0;position: relative;}  #nav-only-Header:before{content: ""; display: block; position: absolute; left: 0; right: 0; top: 0; bottom: 0; background: rgba(255, 255, 255, 0.55);} #nav-only-Header h1{font-size: 21px;}.sfitemDetails{padding-top: 32px;} .program_page h2{font-size: 36px;} #subjectSections.selectSubjectContainer h3, #subjectSections.selectSubjectContainer h4{display: block !important;} #subjectSections .subjects{display: none;} #subjectSections.selectSubjectContainer{width: auto;  margin-bottom: 0;} .opt-media{display: none;}.subjectInfo{width: auto; float: none;    padding-top: 38px; padding-bottom: 30px;} .opt-btn{display: block; background: #5a2c7f !important; color: #fff !important; text-decoration: none !important; font-size: 18px; font-weight: bold; padding: 20px 50px 20px 20px; text-align: left; position: relative; border-top: 1px solid #fff;} .opt-btn:after{content: ""; display: inline-block; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); width: 30px; height: 30px; background: url(//cdn.optimizely.com/img/3698610217/49a5f24c44954149bdd4ed2af8cb3c54.svg) no-repeat center;     background-size: cover;} [data-exp="true"] .opt-btn:after{background-image: url(//cdn.optimizely.com/img/3698610217/bac7830c25034b91b6926c3423519fe2.svg);} .tutoringSubject .wrapper{padding-top: 0; padding-bottom: 0; max-height: 0; transition: max-height 0.4s ease;overflow: hidden; will-change: max-height;} .subjectInfo .opt-img{display: block; padding: 8px 0; text-align: center;} .tutoringSubject .backToTop{display: none;} .mob-cta{display: block;} .subjectInfo .largeBody p a{margin-bottom: 0;} [data-exp="true"] .wrapper{max-height: 3000px; } .leadsContactForm{padding-left: 15px;padding-right: 15px;} .leadsContactForm h2{font-size: 28px;} .leadsContactForm p{font-size: 18px;} .leadsContactForm p br{display: none;} .leadsContactForm .buttonType{margin: 0;} .leadsContactForm .sendButton{display: inline-block;}}</style>');
+});
+
+utils.waitForElement('#nav-only-Header').then(function (element) {
+    $('#header').after($(element).detach());
+});
+
+utils.waitForElement('.sfitemRichText').then(function (element) {
+    $(element).after('<div class="opt-sfitemRichText"><p>Give Your Child Academic Success Today</p><a class="opt-cta" href="javascript:;">get started now!</a></div>');
+    var tutoringSubject = $(element).find('h3').nextAll().andSelf().detach();
+    var html = '';
+    tutoringSubject.not('h3').each(function () {
+        html += $(this).get(0).outerHTML;
+    });
+    if(tutoringSubject.length > 0){
+        $('.largeBody.wrapper').after('<section class="tutoringSubject" id=""> <div class="wrapper"> <div class="subjectInfo"> <h2>'+tutoringSubject.filter('h3').text()+'</h2> <div class="largeBody"> '+ html +' </div> </div> </div> </section>');
+    }
+});
+
+utils.waitForElement('#subjectSections').then(function (element) {
+    $(element).wrapInner('<div class="wrapper"></div>');
+});
+
+utils.waitForElement('.leadsContactForm').then(function (element) {
+  	var phoneNumber = $('#cph_header_TBD48138B009_contactNumberDisplay, #telCallUsToday').first().text();
+    $(element).prepend('<h2>Give Your Child Academic Success Today</h2><p>Call us at <a href="tel:'+ phoneNumber + '">'+ phoneNumber + '</a> or fill out this form. We\'ll contact you shortly<br> to discuss your needs and ways to achieve your goals.</p>');
+});
+
+utils.waitForElement('.tutoringSubject').then(function (element) {
+    $('.tutoringSubject').each(function (index, elem) {
+
+        var subjectInfo = $(this).find('.subjectInfo');
+        var heading = subjectInfo.find('> h2');
+
+        //image & cta
+        $(this).find('.wrapper').prepend('<div class="opt-media"><div class="opt-img"><img src="'+images[key][index]+'"></div> <a class="opt-cta" href="javascript:;">get started now</a></div>');
+
+        //link text change
+        var link = subjectInfo.find('.largeBody p a');
+        link.text(link.text().replace('Explore ', '').replace(' through the grades.', ': Learn More'));
+
+        //mobile elements
+        if(index === 0){//for mob collapse, set first section to expand
+            $(this).attr('data-exp', 'true');
+        } else {
+            $(this).attr('data-exp', 'false');
+        }
+        //mob collapse trigger btn
+        $(this).prepend('<a class="opt-btn" href="javascript:;">'+heading.text()+'</a>');
+
+        //mob img
+        heading.after('<div class="opt-img"><img src="'+images[key][index]+'"></div>');
+
+        //add mob cta below subject info text
+        subjectInfo.append('<div class="mob-cta"><a class="opt-cta" href="javascript:;">get started now!</a></div>');
+    });
+});
+
+utils.waitUntil(function() {
+    return (typeof window.jQuery === 'function');
+}).then(function() {
+    var $ = window.jQuery;
+
+    $(document).on('click', '.opt-cta', function () {
+        var offset = 0;
+        var offsetElem = $('.leadsContactForm');
+        if(offsetElem.length > 0) offset = offsetElem.offset().top;
+        else offset = offsetElem.offset().top;//here should be map element
+        if(offset !== 0)
+            $("html, body").animate({
+                scrollTop: offsetElem.offset().top - 85
+            });
+    });
+
+    $(document).on('click', '.opt-btn', function () {
+        var $this = this;
+        var current = $(this).parent();
+        //$('.tutoringSubject').not(current).attr('data-exp', 'false');
+        if(current.attr('data-exp') === 'true'){
+            current.attr('data-exp', 'false');
+        } else {
+            current.attr('data-exp', 'true');
+        }
+        // setTimeout(function () {
+        //     window.$("html, body").animate({
+        //         scrollTop: $($this).offset().top - 70
+        //     });
+        // }, 400);
+    });
+});
+
+
+
+var images = {
+    'K_3' : [
+        '//cdn.optimizely.com/img/3698610217/d7d882f6067348e3bb3f899c2cdd2c0e.jpg',
+        '//cdn.optimizely.com/img/3698610217/e3945297822e4e1bb19a4f3ed760297d.jpg',
+        '//cdn.optimizely.com/img/3698610217/36104ee101c04c9e9487041dac4929a7.jpg',
+        '//cdn.optimizely.com/img/3698610217/77a70a89855f4ccbbb7fa7e56bbc3609.jpg',
+        '//cdn.optimizely.com/img/3698610217/6bc94854f68b4092836fd603d63aa664.jpg',
+        '//cdn.optimizely.com/img/3698610217/7daf3a0efad04c26b11e6e6723b0ccfc.jpg',
+        '//cdn.optimizely.com/img/3698610217/36c3e3e1c53942d89bc5caccd1e42988.jpg',
+        '//cdn.optimizely.com/img/3698610217/3b6d1eecfcce45b59735cb51f582e5cb.jpg',
+        '//cdn.optimizely.com/img/3698610217/fc285a7e6e8a49a0a8511a18c3c65bb1.jpg',
+        '//cdn.optimizely.com/img/3698610217/089bafceb8214a64b1de62098e61bf2b.jpg',
+        '//cdn.optimizely.com/img/3698610217/c610adeb767949ae8a3653826f6e8d82.jpg',
+        '//cdn.optimizely.com/img/3698610217/3aceefcce58446c09710b17f021e4ac6.jpg',
+        '//cdn.optimizely.com/img/3698610217/514010038ece4e7ebdc8854ed3528c36.jpg'
+    ],
+    '4_6' : [
+        '//cdn.optimizely.com/img/3698610217/313257bfe04e4dd19b4c169acfef52ea.jpg',
+        '//cdn.optimizely.com/img/3698610217/ec9e0598ba2d4f31be63d711ec8b2b86.jpg',
+        '//cdn.optimizely.com/img/3698610217/5646d6d4212744fe9ad1225a9940519b.jpg',
+        '//cdn.optimizely.com/img/3698610217/50383a21eff643119a20bca1a04abeba.jpg',
+        '//cdn.optimizely.com/img/3698610217/af2c81beed044a0aa795efc3990e0103.jpg',
+        '//cdn.optimizely.com/img/3698610217/fcabf5831e974461bbb3c8c457e749cc.jpg',
+        '//cdn.optimizely.com/img/3698610217/e63f2d05ee664cd897652d8a16902437.jpg',
+        '//cdn.optimizely.com/img/3698610217/45a0b2b3d7704090bdbb161093a1d8ea.jpg',
+        '//cdn.optimizely.com/img/3698610217/1bdfa45675474345856704fc15f6e3d4.jpg',
+        '//cdn.optimizely.com/img/3698610217/54a9729508934165b86c286a3e9aacc0.jpg',
+        '//cdn.optimizely.com/img/3698610217/f62b1a2093c74c6a9488f44783d0ad9e.jpg',
+        '//cdn.optimizely.com/img/3698610217/4f9ec6b2163b4b0aa3844451b8e98bae.jpg',
+        '//cdn.optimizely.com/img/3698610217/a06ea33742f9492190d79f050a74b033.jpg',
+        '//cdn.optimizely.com/img/3698610217/4bb1ffea17dd4f3b9a3f93bcdc90f550.jpg',
+        '//cdn.optimizely.com/img/3698610217/7c8a8516f3e0495197943822464a34aa.jpg'
+    ],
+    '7_8' : [
+        '//cdn.optimizely.com/img/3698610217/1e0f763d49ef4de6b7ea62385d53c086.jpg',
+        '//cdn.optimizely.com/img/3698610217/f1df04bb872640f8824b6bb3dd845936.jpg',
+        '//cdn.optimizely.com/img/3698610217/b4d0c3c48cb546e991d707f3d81747ab.jpg',
+        '//cdn.optimizely.com/img/3698610217/a5fc6980769c44ac9a2500300e043b5c.jpg',
+        '//cdn.optimizely.com/img/3698610217/acd182b83fd448288545276f4a52ae34.jpg',
+        '//cdn.optimizely.com/img/3698610217/a551dcb9c1d34cb783ad12b2c1ab5822.jpg',
+        '//cdn.optimizely.com/img/3698610217/b524b7108a4e40649561daccab393dc8.jpg',
+        '//cdn.optimizely.com/img/3698610217/3e96728db626455185ab1a1312f75346.jpg',
+        '//cdn.optimizely.com/img/3698610217/395f8ce623814358b92ccff9e0795340.jpg',
+        '//cdn.optimizely.com/img/3698610217/297ee2f2878c4b1db31abc3be14ce343.jpg',
+        '//cdn.optimizely.com/img/3698610217/dca0903ea1914493b4feafc15c913585.jpg',
+        '//cdn.optimizely.com/img/3698610217/638cede6f2dc4c39b89fc163be9db577.jpg'
+    ],
+    '9_12' : [
+        '//cdn.optimizely.com/img/3698610217/56d4dd9070f74ab2830928601ed4c6c8.jpg',
+        '//cdn.optimizely.com/img/3698610217/a51516a0da1647d9baa07820acc97bbd.jpg',
+        '//cdn.optimizely.com/img/3698610217/2b41bd13454c45b3990068d28c08669d.jpg',
+        '//cdn.optimizely.com/img/3698610217/cdb623acd0ec4b2db92f01d65a37817c.jpg',
+        '//cdn.optimizely.com/img/3698610217/367a6b00bf44409e8ad3716289856575.jpg',
+        '//cdn.optimizely.com/img/3698610217/64756ff1ad2043d69f16be31c27fc9b8.jpg',
+        '//cdn.optimizely.com/img/3698610217/c6cf2d068b064b0294e62a006d7d9e8d.jpg',
+        '//cdn.optimizely.com/img/3698610217/6daf3e11b68940899d16c68fcb616a8d.jpg',
+        '//cdn.optimizely.com/img/3698610217/a53526cfd4304b0cbdbbdbc6874d93f5.jpg'
+    ]
+}
+
+var str = window.location.href;
+
+var subString = str.substring(
+    str.lastIndexOf("programs/") + 9,
+    str.lastIndexOf("-grade")
+);
+var key = '';
+//console.log(subString)
+if(str.lastIndexOf("-grade") < 0 || subString == '1st' || subString == '2nd' || subString == '3rd'){
+    key = 'K_3';
+} else if( subString == '4th' || subString == '5th' || subString == '6th'){
+    key = '4_6';
+} else if( subString == '7th' || subString == '8th'){
+    key = '7_8';
+} else if( subString == '9th' || subString == '10th' || subString == '11th' || subString == '12th'){
+    key = '9_12';
+}
+//console.log(key)
+
+utils.waitForElement('body').then(function () {
+  
+    //custom scrolling events
+    var scrollTwentyFive = true;
+    var scrollFifty = true;
+    var scrollSeventyFive = true;
+    var scrollOneHundred = true;
+
+    // Create the scrollPercentage
+    $(window).bind('scroll', function () {
+        var $ = jQuery;
+
+        //opt scroll events
+        window.scrollPercent = ($(window).scrollTop() / ($(document).height() - $(window).height())) * 100;
+
+        // Conditional code we'll use to fire events based on scrollPercentage.
+
+        if (window.scrollPercent >= 25 && scrollTwentyFive) {
+            window['optimizely'] = window['optimizely'] || [];
+            window.optimizely.push(["trackEvent", "User_scrolls_25"]);
+            scrollTwentyFive = false;
+        }
+
+        if (window.scrollPercent >= 50 && scrollFifty) {
+            window['optimizely'] = window['optimizely'] || [];
+            window.optimizely.push(["trackEvent", "User_scrolls_50"]);
+            scrollFifty = false;
+        }
+
+        if (window.scrollPercent >= 75 && scrollSeventyFive) {
+            window['optimizely'] = window['optimizely'] || [];
+            window.optimizely.push(["trackEvent", "User_scrolls_75"]);
+            scrollSeventyFive = false;
+        }
+
+        if (window.scrollPercent >= 100 && scrollOneHundred) {
+            window['optimizely'] = window['optimizely'] || [];
+            window.optimizely.push(["trackEvent", "User_scrolls_100"]);
+            scrollOneHundred = false;
+        }
+    });
+});
