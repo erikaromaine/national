@@ -1,0 +1,129 @@
+var utils = window.optimizely.get('utils');
+var $ = window.optimizely.get('jquery');
+
+//rearrange blocks
+utils.waitForElement('.homePageLandingContainer').then(function(container) {
+  var option4Container = document.createElement('div');
+  console.log('opt - 1');
+  option4Container.setAttribute('class', 'option4Container optionContainer');
+  utils.waitForElement('.middleRowOptionsFlex').then(function(middleRowOptionsFlex) {
+    $('.middleRowOptionsFlex').append(option4Container);
+    utils.waitForElement('.homePageLandingBottomRowContainer').then(function(bottomContainer) {
+      middleRowOptionsFlex.querySelector('.option4Container').appendChild(bottomContainer);
+      utils.waitForElement('.mainContentWrap').then(function(container) {
+        $('.mainContentWrap').css('opacity', '1');
+      });
+    });
+  });
+});
+
+//copy zipcode form
+utils.waitForElement('#navWrapper').then(function(navWrapper) {
+  utils.waitForElement('.homePageLandingTopRowContainer').then(function(topRow) {
+    var wrapper = document.createElement('div');
+    wrapper.className = "homePageLandingTopRowWrapper";
+    topRow.parentNode.insertBefore(wrapper, topRow);
+    wrapper.appendChild(topRow);
+    offset_hp_content();
+  });
+});
+
+//reposition title to match header
+function offset_hp_content() {
+  utils.observeSelector('#navWrapper', function(navWrapper){
+    var styleLeft = window.getComputedStyle(navWrapper);
+    var topRowCont = document.querySelector('.homePageLandingTopRowContainer');
+    topRowCont.style.marginLeft = styleLeft.marginLeft;
+  });
+}
+
+utils.waitUntil(function () {
+  return (typeof window.jQuery === 'function');
+}).then(function () {
+
+  function SetUpPostalSearchCustom(input, button) {
+    console.log('** SetUpPostalSearch2');
+    if ($('#' + input).is("input")) {
+        $('#' + input).unbind();
+        $('#' + input).keyup(function (e) {
+            if (e.which == 13) {
+                e.preventDefault();
+                if (ValidatePostalCode($(this))) {
+                    GoPostal($(this).val());
+                } else {
+                    $(this).addClass("invalid_form");
+                    AlertPostal();
+                }
+            }
+        });
+
+        $('#' + button).click(function (e) {
+          console.log('** click');
+            e.preventDefault();
+            var postalCode = $('#' + input);
+            if (ValidatePostalCode($(postalCode))) {
+                //submit
+                postalCode.removeClass("invalid_form");
+                var hostURL = window.location.host;
+                GoPostal($(postalCode).val());
+            } else {
+                postalCode.addClass("invalid_form");
+                AlertPostal();
+            }
+        });
+    }
+}
+
+
+  utils.waitForElement('.navFALCInputContainer').then(function(zipForm) {
+     var moveForm = $(zipForm).clone();
+     utils.waitForElement('.homePageLandingTopRowContainerSelectionLine').then(function(container) {
+      $(container).append('<div id="locate-me-button" class="sylvanOblongCtaButtonContainer"><span class="sylvanOblongCtaButtonContainerText">locate me</span> <span class="sylvanOblongCtaButtonContainerImage"></span></div><span class="homePageLandingTopRowContainerSelectionOr sylvanProximaNovaH3Bold sylvanBlue">OR</span>');
+      $(container).append(moveForm);
+      $(container).find('#postalCodeSearch').attr("id","postalCodeSearch2");
+      $(container).find('#btnPostalCodeSearch').attr("id","btnPostalCodeSearch2");
+
+      SetUpPostalSearchCustom("postalCodeSearch2", "btnPostalCodeSearch2");
+      
+     });
+  });    
+
+  $( window ).resize(function() {
+    offset_hp_content(); 
+  });
+
+  
+  /* locate me */
+  utils.waitForElement('#locate-me-button').then(function(locateMe) {
+    $(locateMe).click( function(e) {
+        e.preventDefault();
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(fetchZip);
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    });
+  });
+
+
+  function fetchZip(position) {
+      jQuery.getJSON(
+        'https://nominatim.openstreetmap.org/reverse', 
+        {
+          lat: position.coords.latitude,
+          lon: position.coords.longitude,
+          format: 'json',
+      	}, function (result) {
+          if ( result.address.postcode ) {
+            var zipcode = result.address.postcode;
+            window.location.assign("https://www.sylvanlearning.com/locations/center-finder?postalCode="+zipcode);
+          }
+          else {
+              alert("Your location could not be found.");
+          }
+      	}
+      ); 
+  }
+  
+  
+});
